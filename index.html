@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Axivexa Games — Casual & Addictive</title>
+  <meta name="description" content="Play quick, free browser games: puzzles, arcade, word, and more." />
+  <meta name="theme-color" content="#0b1220" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0b1220;           /* page background */
+      --panel: #0f172a;        /* card/header background */
+      --muted: #94a3b8;        /* secondary text */
+      --text: #e2e8f0;         /* main text */
+      --brand: #7c3aed;        /* accent */
+      --brand-2: #22d3ee;      /* secondary accent */
+      --ok: #22c55e;
+      --warn: #f59e0b;
+      --danger: #ef4444;
+      --ring: rgba(124,58,237,.4);
+      --card: #0c1222;
+      --surface: #0b1328;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 16px;
+      --radius-lg: 22px;
+      --maxw: 1200px;
+    }
+    @media (prefers-color-scheme: light){
+      :root{ --bg:#fbfdff; --panel:#ffffff; --text:#0b1220; --muted:#475569; --card:#ffffff; --surface:#f1f5f9; --shadow:0 8px 24px rgba(2,6,23,.08); --ring:rgba(124,58,237,.25); }
+    }
+    *{ box-sizing:border-box }
+    html,body{ height:100% }
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji','Segoe UI Emoji', 'Segoe UI Symbol';
+      background: radial-gradient(1200px 600px at 80% -10%, rgba(124,58,237,.18), transparent 60%),
+                  radial-gradient(800px 400px at -10% 30%, rgba(34,211,238,.18), transparent 60%),
+                  var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    }
+    a{ color:inherit; text-decoration:none }
+    .container{ max-width:var(--maxw); margin:0 auto; padding:0 20px }
+
+    /* Header */
+    .site-header{ position:sticky; top:0; z-index:40; background:color-mix(in oklab, var(--panel) 92%, transparent); backdrop-filter: blur(8px); border-bottom:1px solid rgba(148,163,184,.12) }
+    .nav-wrap{ display:flex; align-items:center; justify-content:space-between; gap:16px; height:64px }
+    .logo{ display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.2px }
+    .logo-mark{ inline-size:28px; block-size:28px; border-radius:10px; background:linear-gradient(135deg,var(--brand),var(--brand-2)); box-shadow: inset 0 0 0 1px rgba(255,255,255,.15) }
+    nav a{ padding:8px 12px; border-radius:10px; opacity:.9 }
+    nav a:hover{ background:rgba(124,58,237,.12); opacity:1 }
+    .cta-btn{ background:linear-gradient(135deg,var(--brand),var(--brand-2)); color:white; padding:10px 14px; border-radius:12px; font-weight:600; box-shadow: var(--shadow); border:none; cursor:pointer }
+
+    /* Hero */
+    .hero{ position:relative; padding:56px 0 28px }
+    .hero h1{ font-size: clamp(28px, 5vw, 56px); margin:0 0 8px; line-height:1.05 }
+    .hero p{ color:var(--muted); margin:0 0 18px }
+    .hero-cta{ display:flex; gap:12px; flex-wrap:wrap }
+    .pill{ display:inline-flex; align-items:center; gap:8px; font-size:14px; color:var(--muted); background:rgba(148,163,184,.12); padding:6px 10px; border-radius:999px; border:1px solid rgba(148,163,184,.18) }
+
+    /* Sections */
+    section{ padding:28px 0 }
+    h2{ font-size: clamp(20px, 3vw, 28px); margin:0 0 14px }
+
+    /* Cards */
+    .cards{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px }
+    @media (max-width: 980px){ .cards{ grid-template-columns:repeat(3,1fr) } }
+    @media (max-width: 720px){ .cards{ grid-template-columns:repeat(2,1fr) } }
+    @media (max-width: 420px){ .cards{ grid-template-columns:1fr } }
+
+    .card{
+      position:relative; background:linear-gradient(180deg,var(--card),color-mix(in oklab, var(--card), black 6%));
+      border:1px solid rgba(148,163,184,.12);
+      border-radius:var(--radius-lg);
+      padding:16px; min-height:140px; display:flex; flex-direction:column; gap:10px;
+      box-shadow:var(--shadow);
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+      overflow:hidden
+    }
+    .card:hover{ transform: translateY(-3px); border-color: color-mix(in oklab, var(--brand) 40%, rgba(148,163,184,.18)); box-shadow: 0 14px 40px rgba(124,58,237,.18) }
+    .card .title{ font-weight:700 }
+    .meta{ display:flex; gap:8px; flex-wrap:wrap; color:var(--muted); font-size:12px }
+    .play{ margin-top:auto; display:inline-flex; align-items:center; gap:8px; font-weight:600 }
+    .play svg{ inline-size:18px; block-size:18px }
+
+    /* Continue row */
+    .continue-row{ display:grid; grid-template-columns:repeat(6,1fr); gap:12px }
+    @media (max-width: 980px){ .continue-row{ grid-template-columns:repeat(4,1fr) } }
+    @media (max-width: 720px){ .continue-row{ grid-template-columns:repeat(2,1fr) } }
+
+    .empty{ color:var(--muted); background:rgba(148,163,184,.08); border:1px dashed rgba(148,163,184,.3); border-radius:var(--radius); padding:20px }
+
+    /* Footer */
+    .site-footer{ border-top:1px solid rgba(148,163,184,.12); padding:24px 0; color:var(--muted) }
+    .site-footer a{ color:inherit; text-decoration:underline dashed rgba(148,163,184,.35); text-underline-offset:3px }
+
+    /* Utility */
+    .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0 }
+    .grid{ display:grid; gap:16px }
+    .tag{ padding:2px 8px; border-radius:999px; border:1px solid rgba(148,163,184,.22); font-size:12px; color:var(--muted) }
+    .row{ display:flex; align-items:center; gap:10px; flex-wrap:wrap }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap" role="navigation" aria-label="Primary">
+      <a href="index.html" class="logo" aria-label="Axivexa Games home">
+        <span class="logo-mark" aria-hidden="true"></span>
+        Axivexa Games
+      </a>
+      <nav class="row">
+        <a href="games.html">All Games</a>
+        <a href="daily.html">Daily</a>
+        <a href="leaderboard.html">Leaderboards</a>
+        <a href="how-to-play.html">How to Play</a>
+        <a href="settings.html" class="tag" title="Settings">⚙</a>
+        <button class="cta-btn" onclick="location.href='games.html'">Browse</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="pill" aria-live="polite">No installs • Instant play • Works offline*</div>
+        <h1>Play. Pause. Repeat.</h1>
+        <p>Quick puzzle hits and arcade classics—right in your browser.</p>
+        <div class="hero-cta">
+          <button class="cta-btn" onclick="location.href='games.html'">Play a Game</button>
+          <a class="tag" href="#featured">Jump to Featured ↓</a>
+          <a class="tag" href="achievements.html">See Achievements</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED -->
+    <section id="featured">
+      <div class="container">
+        <h2>Featured</h2>
+        <div class="cards" role="list">
+          <a class="card" role="listitem" href="games/2048.html">
+            <span class="title">2048</span>
+            <span class="meta">Swipe or arrow keys • Undo • Themes</span>
+            <span class="play">Play 2048
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </a>
+          <a class="card" role="listitem" href="games/wordle.html">
+            <span class="title">Wordle</span>
+            <span class="meta">Daily & Random • Share grid</span>
+            <span class="play">Play Wordle
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2"/></svg>
+            </span>
+          </a>
+          <a class="card" role="listitem" href="games/snake.html">
+            <span class="title">Snake</span>
+            <span class="meta">Obstacles • Wrap mode • Power-ups</span>
+            <span class="play">Play Snake
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2"/></svg>
+            </span>
+          </a>
+          <a class="card" role="listitem" href="games/flappy.html">
+            <span class="title">Flappy</span>
+            <span class="meta">Tap/Click/Space • Medals</span>
+            <span class="play">Play Flappy
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2"/></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORIES -->
+    <section>
+      <div class="container">
+        <h2>Browse by Category</h2>
+        <div class="cards">
+          <a class="card" href="games.html#casual">
+            <span class="title">Casual</span>
+            <span class="meta">Tic Tac Toe • 2048 • Memory • RPSLS</span>
+            <span class="play">Open Casual →</span>
+          </a>
+          <a class="card" href="games.html#puzzle">
+            <span class="title">Puzzle</span>
+            <span class="meta">Wordle • Sudoku • Crossword • 15-Puzzle</span>
+            <span class="play">Open Puzzle →</span>
+          </a>
+          <a class="card" href="games.html#arcade">
+            <span class="title">Action & Arcade</span>
+            <span class="meta">Platformer • Space Shooter • Dodger • Racer</span>
+            <span class="play">Open Arcade →</span>
+          </a>
+          <a class="card" href="daily.html">
+            <span class="title">Daily Challenges</span>
+            <span class="meta">Wordle • Sudoku • Math Race • 15-Puzzle</span>
+            <span class="play">Play Today’s Daily →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTINUE PLAYING -->
+    <section>
+      <div class="container">
+        <h2>Continue Playing</h2>
+        <div id="recent" class="continue-row" role="list"></div>
+        <div id="recent-empty" class="empty" hidden>
+          Your recent games will show up here. Start with <a href="games/2048.html">2048</a> or <a href="games/wordle.html">Wordle</a>.
+        </div>
+        <p class="meta" style="margin-top:10px">* Some games support offline play after your first visit.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container row" style="justify-content:space-between">
+      <small>© <span id="year"></span> Axivexa Games</small>
+      <div class="row">
+        <a href="about.html">About</a>
+        <span aria-hidden="true">•</span>
+        <a href="privacy.html">Privacy</a>
+        <span aria-hidden="true">•</span>
+        <a href="terms.html">Terms</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ----- Utilities -----
+    const $ = (sel, el=document) => el.querySelector(sel);
+    const $$ = (sel, el=document) => Array.from(el.querySelectorAll(sel));
+
+    // ----- Footer year -----
+    $('#year').textContent = new Date().getFullYear();
+
+    // ----- Recent games from localStorage -----
+    // Expected shape in localStorage under key "axivexa.recent":
+    // [ { id:"2048", name:"2048", href:"/games/2048.html", score: 4096, updated: 1712345678901 }, ... ]
+    function loadRecent(){
+      let recent;
+      try { recent = JSON.parse(localStorage.getItem('axivexa.recent')||'[]'); }
+      catch { recent = []; }
+      // Dedupe by id and sort by updated desc
+      const map = new Map();
+      for(const item of recent){ if(!map.has(item.id)) map.set(item.id, item); }
+      recent = [...map.values()].sort((a,b)=> (b.updated||0)-(a.updated||0)).slice(0,6);
+      const wrap = $('#recent');
+      wrap.innerHTML = '';
+      if(recent.length===0){ $('#recent-empty').hidden = false; return; }
+      $('#recent-empty').hidden = true;
+      for(const g of recent){
+        const a = document.createElement('a');
+        a.className = 'card';
+        a.href = g.href || `games/${g.id}.html`;
+        a.role = 'listitem';
+        a.innerHTML = `
+          <span class="title">${g.name||g.id}</span>
+          <span class="meta">${g.meta || (g.score?`Best: ${g.score}`:'Tap to resume')}</span>
+          <span class="play">Resume →</span>
+        `;
+        wrap.appendChild(a);
+      }
+    }
+    loadRecent();
+
+    // ----- Sample: seed one recent on first visit so the section isn't empty -----
+    if(!localStorage.getItem('axivexa.seeded')){
+      const seed = [ { id:'2048', name:'2048', href:'games/2048.html', score:0, updated: Date.now() } ];
+      localStorage.setItem('axivexa.recent', JSON.stringify(seed));
+      localStorage.setItem('axivexa.seeded','1');
+      loadRecent();
+    }
+
+    // ----- Smooth anchor scroll for internal links -----
+    document.addEventListener('click', (e)=>{
+      const a = e.target.closest('a[href^="#"]');
+      if(!a) return;
+      const id = a.getAttribute('href').slice(1);
+      const el = document.getElementById(id);
+      if(el){ e.preventDefault(); el.scrollIntoView({ behavior:'smooth', block:'start' }); }
+    });
+
+    // ----- (Optional) Basic offline capability: no external assets used on this page -----
+    // You can add a service worker later to cache pages under /games/ for offline play.
+  </script>
+</body>
+</html>
