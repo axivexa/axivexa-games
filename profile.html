@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile | Axivexa Games</title>
+  <link rel="stylesheet" href="/assets/game.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #222;
+      color: #fff;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 1rem;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 2rem;
+    }
+    .profile-header {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 1.5rem;
+    }
+    .profile-header img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid #4cafef;
+    }
+    .profile-header h2 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    .stat-box {
+      background: #fafafa;
+      border: 2px solid #eee;
+      border-radius: 12px;
+      padding: 1rem;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+    .stat-box:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    }
+    .stat-box h3 {
+      margin: 0.5rem 0;
+      font-size: 1.4rem;
+    }
+    .achievements-section {
+      margin-top: 2rem;
+    }
+    .achievements-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+    .achievement {
+      background: #fafafa;
+      border-radius: 12px;
+      padding: 1rem;
+      text-align: center;
+      border: 2px solid #eee;
+    }
+    .achievement img {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 0.5rem;
+    }
+    .achievement.locked {
+      opacity: 0.5;
+      filter: grayscale(80%);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>Axivexa Games</h2>
+    <nav>
+      <a href="/index.html">Home</a>
+      <a href="/games.html">Games</a>
+      <a href="/leaderboard.html">Leaderboard</a>
+      <a href="/achievements.html">Achievements</a>
+      <a href="/profile.html">Profile</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="profile-header">
+      <img src="/assets/avatars/default.png" alt="Player Avatar">
+      <div>
+        <h2>Player123</h2>
+        <p style="color:#555;">Joined: Aug 2025</p>
+        <p style="color:#777;">Rank: #24 on Leaderboard</p>
+      </div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-box">
+        <h3>152</h3>
+        <p>Games Played</p>
+      </div>
+      <div class="stat-box">
+        <h3>89</h3>
+        <p>Wins</p>
+      </div>
+      <div class="stat-box">
+        <h3>12</h3>
+        <p>Win Streak</p>
+      </div>
+      <div class="stat-box">
+        <h3>2450</h3>
+        <p>Total Points</p>
+      </div>
+    </div>
+
+    <div class="achievements-section">
+      <h2>Unlocked Achievements</h2>
+      <div class="achievements-grid">
+        <div class="achievement">
+          <img src="/assets/icons/star.png" alt="First Win">
+          <p>First Win</p>
+        </div>
+        <div class="achievement">
+          <img src="/assets/icons/fire.png" alt="Hot Streak">
+          <p>Hot Streak</p>
+        </div>
+        <div class="achievement locked">
+          <img src="/assets/icons/crown.png" alt="Champion">
+          <p>Champion</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

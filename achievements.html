@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Achievements | Axivexa Games</title>
+  <link rel="stylesheet" href="/assets/game.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #222;
+      color: #fff;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 1rem;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 2rem;
+    }
+    h1 {
+      margin-top: 0;
+      text-align: center;
+    }
+    .achievements-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .achievement {
+      background: #fafafa;
+      border-radius: 12px;
+      padding: 1rem;
+      text-align: center;
+      border: 2px solid #eee;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .achievement:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }
+    .achievement.locked {
+      opacity: 0.5;
+      filter: grayscale(80%);
+    }
+    .achievement img {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 1rem;
+    }
+    .achievement h3 {
+      margin: 0.5rem 0;
+    }
+    .achievement p {
+      font-size: 0.9rem;
+      color: #555;
+    }
+    .progress-bar {
+      background: #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+      height: 10px;
+      margin-top: 0.5rem;
+    }
+    .progress-bar span {
+      display: block;
+      height: 100%;
+      background: linear-gradient(90deg, #4cafef, #2b7de9);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>Axivexa Games</h2>
+    <nav>
+      <a href="/index.html">Home</a>
+      <a href="/games.html">Games</a>
+      <a href="/leaderboard.html">Leaderboard</a>
+      <a href="/achievements.html">Achievements</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1>🏅 Achievements</h1>
+    <p style="text-align:center; color:#555;">Unlock badges and milestones as you play more games!</p>
+
+    <div class="achievements-grid">
+      <div class="achievement">
+        <img src="/assets/icons/star.png" alt="First Win">
+        <h3>First Win</h3>
+        <p>Win your first game in any category.</p>
+        <div class="progress-bar"><span style="width:100%"></span></div>
+      </div>
+
+      <div class="achievement">
+        <img src="/assets/icons/fire.png" alt="Hot Streak">
+        <h3>Hot Streak</h3>
+        <p>Win 5 games in a row without losing.</p>
+        <div class="progress-bar"><span style="width:80%"></span></div>
+      </div>
+
+      <div class="achievement locked">
+        <img src="/assets/icons/crown.png" alt="Champion">
+        <h3>Champion</h3>
+        <p>Reach #1 on the leaderboard.</p>
+        <div class="progress-bar"><span style="width:30%"></span></div>
+      </div>
+
+      <div class="achievement">
+        <img src="/assets/icons/brain.png" alt="Puzzle Master">
+        <h3>Puzzle Master</h3>
+        <p>Complete 50 puzzle games (Sudoku, Wordle, Crossword).</p>
+        <div class="progress-bar"><span style="width:60%"></span></div>
+      </div>
+
+      <div class="achievement locked">
+        <img src="/assets/icons/trophy.png" alt="Ultimate Gamer">
+        <h3>Ultimate Gamer</h3>
+        <p>Unlock all achievements.</p>
+        <div class="progress-bar"><span style="width:10%"></span></div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

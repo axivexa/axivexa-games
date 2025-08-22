@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Play | Axivexa Games</title>
+  <link rel="stylesheet" href="/assets/game.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    header {
+      background: #222;
+      color: #fff;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 1rem;
+    }
+    .main {
+      flex: 1;
+      display: flex;
+      max-width: 1200px;
+      margin: 2rem auto;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    .sidebar {
+      width: 260px;
+      background: #f9fafc;
+      border-right: 2px solid #eee;
+      padding: 1rem;
+    }
+    .sidebar h3 {
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .sidebar ul li {
+      margin: 0.6rem 0;
+    }
+    .sidebar ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      transition: color 0.2s;
+    }
+    .sidebar ul li a:hover {
+      color: #2b7de9;
+    }
+    .content {
+      flex: 1;
+      padding: 2rem;
+    }
+    .game-rules {
+      margin-bottom: 2rem;
+    }
+    .game-rules h2 {
+      margin-top: 0;
+    }
+    .game-rules ul {
+      margin-top: 0.5rem;
+      padding-left: 1.2rem;
+    }
+    .tip-box {
+      background: #f1faff;
+      border-left: 4px solid #2b7de9;
+      padding: 1rem;
+      border-radius: 6px;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>Axivexa Games</h2>
+    <nav>
+      <a href="/index.html">Home</a>
+      <a href="/games.html">Games</a>
+      <a href="/leaderboard.html">Leaderboard</a>
+      <a href="/achievements.html">Achievements</a>
+      <a href="/daily.html">Daily</a>
+      <a href="/profile.html">Profile</a>
+    </nav>
+  </header>
+
+  <div class="main">
+    <div class="sidebar">
+      <h3>Games Guide</h3>
+      <ul>
+        <li><a href="#tic-tac-toe">Tic Tac Toe</a></li>
+        <li><a href="#2048">2048</a></li>
+        <li><a href="#flappy">Flappy Bird</a></li>
+        <li><a href="#memory">Memory Game</a></li>
+        <li><a href="#snake">Snake</a></li>
+        <li><a href="#bubble">Bubble Shooter</a></li>
+        <li><a href="#rps">Rock Paper Scissors</a></li>
+      </ul>
+    </div>
+
+    <div class="content">
+      <div class="game-rules" id="tic-tac-toe">
+        <h2>Tic Tac Toe</h2>
+        <p>Two players take turns marking X or O on a 3×3 grid. The first to align three marks wins.</p>
+        <ul>
+          <li>Play against AI or a friend.</li>
+          <li>Try different difficulty levels for a challenge.</li>
+        </ul>
+        <div class="tip-box">💡 Tip: Control the center for better chances to win.</div>
+      </div>
+
+      <div class="game-rules" id="2048">
+        <h2>2048</h2>
+        <p>Slide tiles on a 4×4 grid to combine numbers and reach 2048.</p>
+        <ul>
+          <li>Use arrow keys to move tiles.</li>
+          <li>Combine identical tiles to merge.</li>
+        </ul>
+        <div class="tip-box">💡 Tip: Keep high-value tiles in a corner.</div>
+      </div>
+
+      <div class="game-rules" id="flappy">
+        <h2>Flappy Bird</h2>
+        <p>Click or tap to keep the bird flying and avoid pipes.</p>
+        <ul>
+          <li>Each pipe passed gives 1 point.</li>
+          <li>Game over if you hit an obstacle.</li>
+        </ul>
+      </div>
+
+      <div class="game-rules" id="memory">
+        <h2>Memory Game</h2>
+        <p>Flip cards to find matching pairs.</p>
+        <ul>
+          <li>Try to clear the board in the fewest moves.</li>
+          <li>Great for improving memory skills.</li>
+        </ul>
+      </div>
+
+      <div class="game-rules" id="snake">
+        <h2>Snake</h2>
+        <p>Control the snake to eat food and grow longer. Avoid walls and yourself.</p>
+        <ul>
+          <li>Use arrow keys to move.</li>
+          <li>Each food eaten increases score and length.</li>
+        </ul>
+      </div>
+
+      <div class="game-rules" id="bubble">
+        <h2>Bubble Shooter</h2>
+        <p>Shoot bubbles to match 3 or more of the same color and clear the board.</p>
+        <div class="tip-box">💡 Tip: Bounce shots off walls to hit hard-to-reach spots.</div>
+      </div>
+
+      <div class="game-rules" id="rps">
+        <h2>Rock Paper Scissors</h2>
+        <p>Rock beats Scissors, Scissors beats Paper, Paper beats Rock.</p>
+        <ul>
+          <li>Play against AI or with friends.</li>
+          <li>Variants may include Lizard & Spock.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

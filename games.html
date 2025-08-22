@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>All Games | Axivexa Games</title>
+  <meta name="description" content="Browse and play free browser games: puzzle, casual, and arcade." />
+  <meta name="theme-color" content="#0b1220" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0b1220; --panel:#0f172a; --text:#e2e8f0; --muted:#94a3b8; --brand:#7c3aed; --brand-2:#22d3ee;
+      --card:#0c1222; --surface:#0b1328; --border: rgba(148,163,184,.14); --radius:16px; --radius-lg:22px; --shadow:0 10px 30px rgba(0,0,0,.35); --maxw:1200px;
+    }
+    @media (prefers-color-scheme: light){ :root{ --bg:#fbfdff; --panel:#ffffff; --text:#0b1220; --muted:#475569; --card:#ffffff; --surface:#f1f5f9; --border: rgba(2,6,23,.08); --shadow:0 8px 24px rgba(2,6,23,.08); } }
+    *{ box-sizing: border-box }
+    html,body{ height:100% }
+    body{ margin:0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial; background:
+      radial-gradient(1200px 600px at 80% -10%, rgba(124,58,237,.18), transparent 60%),
+      radial-gradient(800px 400px at -10% 30%, rgba(34,211,238,.18), transparent 60%), var(--bg);
+      color:var(--text) }
+    a{ color:inherit; text-decoration:none }
+    .container{ max-width:var(--maxw); margin:0 auto; padding:0 20px }
+
+    /* Header */
+    .site-header{ position:sticky; top:0; z-index:40; background:color-mix(in oklab, var(--panel) 92%, transparent); backdrop-filter: blur(8px); border-bottom:1px solid var(--border) }
+    .nav-wrap{ display:flex; align-items:center; justify-content:space-between; gap:16px; height:64px }
+    .logo{ display:flex; align-items:center; gap:10px; font-weight:800 }
+    .logo-mark{ inline-size:28px; block-size:28px; border-radius:10px; background:linear-gradient(135deg,var(--brand),var(--brand-2)); box-shadow: inset 0 0 0 1px rgba(255,255,255,.15) }
+    nav a{ padding:8px 12px; border-radius:10px; opacity:.9 }
+    nav a:hover{ background:rgba(124,58,237,.12); opacity:1 }
+
+    /* Page */
+    main{ padding:20px 0 40px }
+    h1{ font-size: clamp(24px, 3.5vw, 40px); margin:.5rem 0 0 }
+    p.lead{ color:var(--muted); margin:.25rem 0 1rem }
+
+    /* Filters */
+    .filters{ position:sticky; top:64px; z-index:30; background:color-mix(in oklab, var(--panel) 93%, transparent); border:1px solid var(--border); border-radius:var(--radius-lg); padding:12px; display:grid; grid-template-columns:1.2fr 1fr 1fr 1fr; gap:10px; box-shadow:var(--shadow); backdrop-filter: blur(6px); margin:16px 0 }
+    @media (max-width: 860px){ .filters{ grid-template-columns:1fr 1fr; } }
+    @media (max-width: 520px){ .filters{ grid-template-columns:1fr; position:static } }
+    .filters input, .filters select{ width:100%; padding:12px 12px; border-radius:12px; border:1px solid var(--border); background: var(--surface); color: var(--text) }
+    .filters input::placeholder{ color:var(--muted) }
+    .chipbar{ display:flex; gap:8px; align-items:center; flex-wrap:wrap }
+    .chip{ border:1px solid var(--border); background: rgba(148,163,184,.08); color:var(--muted); padding:6px 10px; border-radius:999px; font-size:12px; cursor:pointer; user-select:none }
+    .chip.active{ outline:2px solid rgba(124,58,237,.35); color:#fff; background: linear-gradient(135deg,var(--brand),var(--brand-2)) }
+
+    /* Grid */
+    .grid{ display:grid; gap:14px; grid-template-columns: repeat(4, minmax(0,1fr)); margin-top:14px }
+    @media (max-width: 980px){ .grid{ grid-template-columns:repeat(3,1fr) } }
+    @media (max-width: 720px){ .grid{ grid-template-columns:repeat(2,1fr) } }
+    @media (max-width: 420px){ .grid{ grid-template-columns:1fr } }
+
+    /* Card */
+    .card{ position:relative; background:linear-gradient(180deg,var(--card),color-mix(in oklab, var(--card), black 6%)); border:1px solid var(--border); border-radius:var(--radius-lg); padding:14px; min-height:140px; display:flex; flex-direction:column; gap:8px; box-shadow:var(--shadow); transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; overflow:hidden }
+    .card:hover{ transform: translateY(-3px); border-color: color-mix(in oklab, var(--brand) 40%, var(--border)); box-shadow: 0 14px 40px rgba(124,58,237,.18) }
+    .title{ font-weight:700 }
+    .desc{ color:var(--muted); font-size:13px; line-height:1.25 }
+    .tags{ display:flex; gap:6px; flex-wrap:wrap }
+    .tag{ border:1px solid var(--border); border-radius:999px; font-size:11px; color:var(--muted); padding:3px 8px }
+    .play{ margin-top:auto; display:flex; align-items:center; gap:8px; font-weight:600 }
+    .play svg{ inline-size:18px; block-size:18px }
+
+    .section-anchor{ display:flex; align-items:center; gap:8px; margin-top:28px }
+    .section-anchor .emoji{ font-size:24px }
+    .muted{ color:var(--muted) }
+    .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0 }
+
+    /* Footer */
+    .site-footer{ border-top:1px solid var(--border); padding:24px 0; color:var(--muted) }
+    .site-footer a{ color:inherit; text-decoration:underline dashed rgba(148,163,184,.35); text-underline-offset:3px }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="index.html" class="logo" aria-label="Axivexa Games home">
+        <span class="logo-mark" aria-hidden="true"></span>
+        Axivexa Games
+      </a>
+      <nav>
+        <a href="daily.html">Daily</a>
+        <a href="leaderboard.html">Leaderboards</a>
+        <a href="how-to-play.html">How to Play</a>
+        <a href="settings.html" title="Settings">⚙</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <h1>All Games</h1>
+      <p class="lead">Filter by category, search by name, or sort by trending/newest/A–Z.</p>
+
+      <!-- Filters -->
+      <form class="filters" id="filters" onsubmit="event.preventDefault()">
+        <input id="q" type="search" placeholder="Search games… (e.g., snake, word)" aria-label="Search games" />
+        <select id="category" aria-label="Category">
+          <option value="all">All Categories</option>
+          <option value="casual">Casual</option>
+          <option value="puzzle">Puzzle</option>
+          <option value="arcade">Action/Arcade</option>
+        </select>
+        <select id="input" aria-label="Input type">
+          <option value="any">Any Input</option>
+          <option value="keyboard">Keyboard</option>
+          <option value="mouse">Mouse/Touch</option>
+        </select>
+        <select id="sort" aria-label="Sort">
+          <option value="trending">Sort: Trending</option>
+          <option value="new">Newest</option>
+          <option value="az">A–Z</option>
+        </select>
+        <div class="chipbar" style="grid-column: 1 / -1">
+          <button type="button" class="chip" data-chip="offline">Offline-friendly</button>
+          <button type="button" class="chip" data-chip="daily">Daily mode</button>
+          <button type="button" class="chip" data-chip="difficulty">Has difficulty</button>
+          <button type="button" class="chip" data-chip="undo">Has undo</button>
+        </div>
+      </form>
+
+      <!-- Section anchors -->
+      <div class="section-anchor" id="casual">
+        <span class="emoji">🎮</span>
+        <h2 style="margin:0">Casual</h2>
+        <span class="muted">Tic Tac Toe, 2048, Memory, RPSLS, Bubble Shooter</span>
+      </div>
+      <div id="grid-casual" class="grid" role="list"></div>
+
+      <div class="section-anchor" id="puzzle">
+        <span class="emoji">🧩</span>
+        <h2 style="margin:0">Puzzle & Brain</h2>
+        <span class="muted">Wordle, Sudoku, Crossword, 15-Puzzle, Hangman, Math Race</span>
+      </div>
+      <div id="grid-puzzle" class="grid" role="list"></div>
+
+      <div class="section-anchor" id="arcade">
+        <span class="emoji">⚡</span>
+        <h2 style="margin:0">Action & Arcade</h2>
+        <span class="muted">Platformer, Space Shooter, Dodger, Top-down Racer, Flappy</span>
+      </div>
+      <div id="grid-arcade" class="grid" role="list"></div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container" style="display:flex; justify-content:space-between; align-items:center">
+      <small>© <span id="year"></span> Axivexa Games</small>
+      <div>
+        <a href="about.html">About</a>
+        <span aria-hidden="true">•</span>
+        <a href="privacy.html">Privacy</a>
+        <span aria-hidden="true">•</span>
+        <a href="terms.html">Terms</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ---------- Data ----------
+    // Each game: id, name, href, cat, desc, tags, input, features, addedAt (timestamp), heat (0..100)
+    const GAMES = [
+      { id:'tic-tac-toe', name:'Tic Tac Toe (AI)', href:'games/tic-tac-toe.html', cat:'casual', desc:'3×3 grid, play vs AI with difficulty levels & hints.', tags:['Board','AI'], input:'mouse', features:['difficulty','offline'], addedAt: 1718000000000, heat:72 },
+      { id:'2048', name:'2048', href:'games/2048.html', cat:'casual', desc:'Slide tiles to merge numbers. Undo & themes supported.', tags:['Numbers','Swipe'], input:'keyboard', features:['undo','offline'], addedAt: 1718200000000, heat:96 },
+      { id:'flappy', name:'Flappy', href:'games/flappy.html', cat:'arcade', desc:'Tap/Click/Space to flap through the pipes. Medals!', tags:['One-button','Endless'], input:'mouse', features:['offline'], addedAt: 1718400000000, heat:90 },
+      { id:'memory', name:'Memory', href:'games/memory.html', cat:'casual', desc:'Flip cards to match pairs. Timers, previews, best times.', tags:['Cards','Match'], input:'mouse', features:['difficulty'], addedAt: 1718600000000, heat:70 },
+      { id:'whack-a-mole', name:'Whack-a-Mole', href:'games/whack-a-mole.html', cat:'casual', desc:'Tap moles fast! Power-ups & combos for high scores.', tags:['Reflex','Timer'], input:'mouse', features:['difficulty'], addedAt: 1718800000000, heat:68 },
+      { id:'snake', name:'Snake', href:'games/snake.html', cat:'casual', desc:'Classic snake with obstacles, wrap mode & power-ups.', tags:['Classic','Arcade'], input:'keyboard', features:['difficulty','offline'], addedAt: 1719000000000, heat:94 },
+      { id:'bubble-shooter', name:'Bubble Shooter', href:'games/bubble-shooter.html', cat:'casual', desc:'Aim, bounce, and pop bubbles before the ceiling drops.', tags:['Aim','Physics'], input:'mouse', features:['difficulty'], addedAt: 1719200000000, heat:76 },
+      { id:'rpsls', name:'Rock–Paper–Scissors–Lizard–Spock', href:'games/rpsls.html', cat:'casual', desc:'RPS with a twist. Best-of rounds and streaks.', tags:['Party','Quick'], input:'mouse', features:[], addedAt: 1719400000000, heat:62 },
+
+      { id:'sliding-15', name:'15-Puzzle', href:'games/sliding-15.html', cat:'puzzle', desc:'Rearrange tiles to restore the image. Solvable shuffles.', tags:['Tiles','Logic'], input:'mouse', features:['daily'], addedAt: 1719600000000, heat:73 },
+      { id:'wordle', name:'Wordle', href:'games/wordle.html', cat:'puzzle', desc:'Guess the word in 6 tries. Daily & random modes.', tags:['Words'], input:'keyboard', features:['daily','offline'], addedAt: 1719800000000, heat:98 },
+      { id:'sudoku', name:'Sudoku', href:'games/sudoku.html', cat:'puzzle', desc:'9×9 with pencil marks, hints, and difficulty levels.', tags:['Numbers','Logic'], input:'mouse', features:['difficulty','offline'], addedAt: 1720000000000, heat:88 },
+      { id:'crossword', name:'Crossword', href:'games/crossword.html', cat:'puzzle', desc:'Interactive across/down clues. Save progress.', tags:['Words','Grid'], input:'keyboard', features:[], addedAt: 1720200000000, heat:67 },
+      { id:'hangman', name:'Hangman', href:'games/hangman.html', cat:'puzzle', desc:'Guess the word before the drawing completes.', tags:['Words','Guess'], input:'keyboard', features:[], addedAt: 1720400000000, heat:64 },
+      { id:'math-race', name:'Math Quiz Race', href:'games/math-race.html', cat:'puzzle', desc:'Answer quick math under the clock. Streak multipliers.', tags:['Math','Timed'], input:'keyboard', features:['difficulty'], addedAt: 1720600000000, heat:71 },
+
+      { id:'platformer', name:'Platformer', href:'games/platformer.html', cat:'arcade', desc:'Run, jump, and collect coins. Levels & checkpoints.', tags:['Side-scroller'], input:'keyboard', features:['difficulty'], addedAt: 1720800000000, heat:77 },
+      { id:'space-shooter', name:'Space Shooter', href:'games/space-shooter.html', cat:'arcade', desc:'Top-down waves, power-ups, and bosses.', tags:['Shooter','Waves'], input:'keyboard', features:['difficulty'], addedAt: 1721000000000, heat:82 },
+      { id:'dodger', name:'Dodger', href:'games/dodger.html', cat:'arcade', desc:'Avoid falling objects. Power-ups, increasing speed.', tags:['Reflex','Endless'], input:'keyboard', features:[], addedAt: 1721200000000, heat:69 },
+      { id:'topdown-racer', name:'Top-down Racer', href:'games/topdown-racer.html', cat:'arcade', desc:'Lap times, boosts, and ghost replays.', tags:['Racing','Laps'], input:'keyboard', features:[], addedAt: 1721400000000, heat:75 },
+      { id:'clicker', name:'Clicker', href:'games/clicker.html', cat:'arcade', desc:'Tap to earn. Upgrades, prestige, and offline gains.', tags:['Idle','Incremental'], input:'mouse', features:['offline'], addedAt: 1721600000000, heat:80 },
+    ];
+
+    // ---------- Render ----------
+    const $ = (s,el=document)=>el.querySelector(s);
+    const $$ = (s,el=document)=>Array.from(el.querySelectorAll(s));
+    $('#year').textContent = new Date().getFullYear();
+
+    const buckets = {
+      casual: $('#grid-casual'),
+      puzzle: $('#grid-puzzle'),
+      arcade: $('#grid-arcade'),
+    };
+
+    function createCard(g){
+      const a = document.createElement('a');
+      a.href = g.href;
+      a.className = 'card';
+      a.setAttribute('role','listitem');
+      a.dataset.cat = g.cat; a.dataset.input = g.input; a.dataset.features = g.features.join(','); a.dataset.name = g.name.toLowerCase(); a.dataset.heat = g.heat; a.dataset.added = g.addedAt;
+      a.innerHTML = `
+        <span class="title">${g.name}</span>
+        <span class="desc">${g.desc}</span>
+        <span class="tags">${g.tags.map(t=>`<span class='tag'>${t}</span>`).join('')}</span>
+        <span class="play">Play
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>`;
+      return a;
+    }
+
+    function mount(){
+      // Clear
+      Object.values(buckets).forEach(b=>b.innerHTML='');
+      // Sort default by heat (trending)
+      const byCat = { casual:[], puzzle:[], arcade:[] };
+      for(const g of GAMES){ byCat[g.cat].push(g); }
+      for(const c of Object.keys(byCat)){
+        byCat[c].sort((a,b)=> b.heat - a.heat);
+        for(const g of byCat[c]) buckets[c].appendChild(createCard(g));
+      }
+    }
+    mount();
+
+    // ---------- Filtering ----------
+    const q = $('#q');
+    const selCat = $('#category');
+    const selInput = $('#input');
+    const selSort = $('#sort');
+    const chipState = new Set();
+
+    $$('.chip').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const key = btn.dataset.chip;
+        if(chipState.has(key)){ chipState.delete(key); btn.classList.remove('active'); }
+        else { chipState.add(key); btn.classList.add('active'); }
+        applyFilters();
+      });
+    });
+
+    [q, selCat, selInput, selSort].forEach(el=> el.addEventListener('input', applyFilters));
+
+    function applyFilters(){
+      const search = (q.value||'').trim().toLowerCase();
+      const cat = selCat.value; const input = selInput.value; const sort = selSort.value;
+      const cards = $$('.card');
+      for(const card of cards){
+        const name = card.dataset.name;
+        const matchesText = !search || name.includes(search);
+        const matchesCat = cat==='all' || card.dataset.cat===cat;
+        const matchesInput = input==='any' || card.dataset.input===input;
+        const features = (card.dataset.features||'').split(',').filter(Boolean);
+        let matchesChips = true;
+        for(const chip of chipState){
+          if(chip==='offline' && !features.includes('offline')) matchesChips = false;
+          if(chip==='daily' && !features.includes('daily')) matchesChips = false;
+          if(chip==='difficulty' && !features.includes('difficulty')) matchesChips = false;
+          if(chip==='undo' && !features.includes('undo')) matchesChips = false;
+        }
+        const show = matchesText && matchesCat && matchesInput && matchesChips;
+        card.style.display = show ? '' : 'none';
+      }
+      // Sorting inside each visible grid
+      sortGrid($('#grid-casual'), sort);
+      sortGrid($('#grid-puzzle'), sort);
+      sortGrid($('#grid-arcade'), sort);
+      // Jump to section if a category was chosen
+      if(cat!=='all') document.getElementById(cat)?.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+
+    function sortGrid(grid, mode){
+      const items = $$('.card', grid).filter(el=> el.style.display !== 'none');
+      const key = { trending:'heat', new:'added', az:'name' }[mode] || 'heat';
+      items.sort((a,b)=>{
+        if(key==='heat') return Number(b.dataset.heat) - Number(a.dataset.heat);
+        if(key==='added') return Number(b.dataset.added) - Number(a.dataset.added);
+        if(key==='name') return a.dataset.name.localeCompare(b.dataset.name);
+        return 0;
+      });
+      // Re-append in new order
+      for(const el of items) grid.appendChild(el);
+    }
+
+    // Preserve last filters via localStorage
+    const LSKEY = 'axivexa.games.filters';
+    function loadFilters(){
+      try{
+        const s = JSON.parse(localStorage.getItem(LSKEY)||'{}');
+        if(s.q) q.value = s.q;
+        if(s.category) selCat.value = s.category;
+        if(s.input) selInput.value = s.input;
+        if(s.sort) selSort.value = s.sort;
+        if(Array.isArray(s.chips)){
+          for(const chip of s.chips){ chipState.add(chip); const btn=$(`.chip[data-chip="${chip}"]`); btn?.classList.add('active'); }
+        }
+      }catch{}
+      applyFilters();
+    }
+    function saveFilters(){
+      const s = { q:q.value, category:selCat.value, input:selInput.value, sort:selSort.value, chips:[...chipState] };
+      localStorage.setItem(LSKEY, JSON.stringify(s));
+    }
+    ['input','click','change'].forEach(evt=> $('#filters').addEventListener(evt, saveFilters));
+
+    // Deep-link by hash (e.g., #puzzle)
+    window.addEventListener('load', ()=>{
+      loadFilters();
+      const hash = location.hash.replace('#','');
+      if(['casual','puzzle','arcade'].includes(hash)){
+        selCat.value = hash==='arcade' ? 'arcade' : hash; applyFilters();
+      }
+    });
+  </script>
+</body>
+</html>

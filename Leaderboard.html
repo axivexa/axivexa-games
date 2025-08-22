@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leaderboard | Axivexa Games</title>
+  <link rel="stylesheet" href="/assets/game.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #222;
+      color: #fff;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 1rem;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 2rem;
+    }
+    h1 {
+      margin-top: 0;
+      text-align: center;
+    }
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .controls select, .controls input {
+      padding: 0.5rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      min-width: 150px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    table thead {
+      background: #eee;
+    }
+    table th, table td {
+      padding: 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    table tr:hover {
+      background: #fafafa;
+    }
+    .rank {
+      font-weight: bold;
+      text-align: center;
+    }
+    .gold { color: goldenrod; }
+    .silver { color: silver; }
+    .bronze { color: #cd7f32; }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>Axivexa Games</h2>
+    <nav>
+      <a href="/index.html">Home</a>
+      <a href="/games.html">Games</a>
+      <a href="/leaderboard.html">Leaderboard</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1>🏆 Leaderboard</h1>
+
+    <div class="controls">
+      <input type="text" id="searchPlayer" placeholder="Search player...">
+      <select id="gameFilter">
+        <option value="all">All Games</option>
+        <option value="tic-tac-toe">Tic Tac Toe</option>
+        <option value="2048">2048</option>
+        <option value="flappy-bird">Flappy Bird</option>
+        <option value="snake">Snake</option>
+        <option value="sudoku">Sudoku</option>
+        <option value="platformer">Platformer</option>
+        <option value="space-shooter">Space Shooter</option>
+      </select>
+      <select id="sortBy">
+        <option value="rank">Sort by Rank</option>
+        <option value="score">Sort by Score</option>
+        <option value="name">Sort by Name</option>
+      </select>
+    </div>
+
+    <table id="leaderboardTable">
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Player</th>
+          <th>Game</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="rank gold">🥇 1</td>
+          <td>Axivexa</td>
+          <td>2048</td>
+          <td>32768</td>
+        </tr>
+        <tr>
+          <td class="rank silver">🥈 2</td>
+          <td>PlayerOne</td>
+          <td>Snake</td>
+          <td>5120</td>
+        </tr>
+        <tr>
+          <td class="rank bronze">🥉 3</td>
+          <td>GamerX</td>
+          <td>Flappy Bird</td>
+          <td>453</td>
+        </tr>
+        <tr>
+          <td class="rank">4</td>
+          <td>JaneDoe</td>
+          <td>Sudoku</td>
+          <td>15:32</td>
+        </tr>
+        <tr>
+          <td class="rank">5</td>
+          <td>Speedy</td>
+          <td>Platformer</td>
+          <td>12000</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    const searchInput = document.getElementById('searchPlayer');
+    const filterSelect = document.getElementById('gameFilter');
+    const sortSelect = document.getElementById('sortBy');
+    const table = document.getElementById('leaderboardTable').getElementsByTagName('tbody')[0];
+
+    function filterTable() {
+      const search = searchInput.value.toLowerCase();
+      const game = filterSelect.value;
+
+      for (let row of table.rows) {
+        const player = row.cells[1].innerText.toLowerCase();
+        const gameName = row.cells[2].innerText.toLowerCase().replace(/ /g, '-');
+        const matchPlayer = player.includes(search);
+        const matchGame = game === 'all' || game === gameName;
+        row.style.display = matchPlayer && matchGame ? '' : 'none';
+      }
+    }
+
+    function sortTable() {
+      const rows = Array.from(table.rows);
+      const sortBy = sortSelect.value;
+
+      rows.sort((a, b) => {
+        if (sortBy === 'rank') {
+          return parseInt(a.cells[0].innerText.replace(/\D/g,'')) - parseInt(b.cells[0].innerText.replace(/\D/g,''));
+        }
+        if (sortBy === 'score') {
+          return b.cells[3].innerText.localeCompare(a.cells[3].innerText, undefined, {numeric: true});
+        }
+        if (sortBy === 'name') {
+          return a.cells[1].innerText.localeCompare(b.cells[1].innerText);
+        }
+      });
+
+      rows.forEach(r => table.appendChild(r));
+    }
+
+    searchInput.addEventListener('input', filterTable);
+    filterSelect.addEventListener('change', filterTable);
+    sortSelect.addEventListener('change', sortTable);
+  </script>
+</body>
+</html>

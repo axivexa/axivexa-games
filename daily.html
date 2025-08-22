@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Challenges | Axivexa Games</title>
+  <link rel="stylesheet" href="/assets/game.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #222;
+      color: #fff;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 1rem;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 2rem;
+    }
+    h1 {
+      text-align: center;
+      margin-top: 0;
+    }
+    .daily-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .challenge-card {
+      background: #fafafa;
+      border-radius: 12px;
+      border: 2px solid #eee;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .challenge-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    }
+    .challenge-card h3 {
+      margin: 0.5rem 0;
+    }
+    .challenge-card p {
+      color: #555;
+      font-size: 0.9rem;
+    }
+    .challenge-card button {
+      margin-top: 1rem;
+      padding: 0.6rem 1rem;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(90deg, #4cafef, #2b7de9);
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .challenge-card button:hover {
+      background: linear-gradient(90deg, #2b7de9, #4cafef);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>Axivexa Games</h2>
+    <nav>
+      <a href="/index.html">Home</a>
+      <a href="/games.html">Games</a>
+      <a href="/leaderboard.html">Leaderboard</a>
+      <a href="/achievements.html">Achievements</a>
+      <a href="/daily.html">Daily</a>
+      <a href="/profile.html">Profile</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1>📅 Daily Challenges</h1>
+    <p style="text-align:center; color:#555;">Come back every day for new puzzles & rewards!</p>
+
+    <div class="daily-grid">
+      <div class="challenge-card">
+        <h3>Daily Wordle</h3>
+        <p>Guess the hidden 5-letter word in 6 tries.</p>
+        <button onclick="location.href='/games/wordle.html'">Play</button>
+      </div>
+
+      <div class="challenge-card">
+        <h3>Daily Sudoku</h3>
+        <p>Fill the grid with numbers 1-9 without repeating.</p>
+        <button onclick="location.href='/games/sudoku.html'">Play</button>
+      </div>
+
+      <div class="challenge-card">
+        <h3>Daily Math Quiz</h3>
+        <p>Solve 10 quick math problems as fast as possible.</p>
+        <button onclick="location.href='/games/mathquiz.html'">Play</button>
+      </div>
+
+      <div class="challenge-card">
+        <h3>Daily Crossword</h3>
+        <p>Test your vocabulary with today’s crossword puzzle.</p>
+        <button onclick="location.href='/games/crossword.html'">Play</button>
+      </div>
+
+      <div class="challenge-card">
+        <h3>Daily Memory</h3>
+        <p>Match pairs of cards in the least number of moves.</p>
+        <button onclick="location.href='/games/memory.html'">Play</button>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
